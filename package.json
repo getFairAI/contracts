@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -noEmit && ts-node build.ts",
     "deploy:src": "ts-node scripts/deploy-src.ts",
-    "deploy:instance": "ts-node scripts/deploy-instance.ts"
+    "deploy:instance": "ts-node scripts/deploy-instance.ts",
+    "lint": "eslint --fix \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" --config ./.prettierrc"
   },
   "repository": {
     "type": "git",
