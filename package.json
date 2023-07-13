@@ -4,7 +4,10 @@
   "type": "module",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -noEmit && ts-node build.ts",
+    "deploy:src": "ts-node scripts/deploy-src.ts",
+    "deploy:instance": "ts-node scripts/deploy-instance.ts"
   },
   "repository": {
     "type": "git",
@@ -15,6 +18,14 @@
     "url": "https://github.com/FAIR-Protocol/fair-contracts/issues"
   },
   "homepage": "https://github.com/FAIR-Protocol/fair-contracts#readme",
+  "dependencies": {
+    "@bundlr-network/client": "0.11.9",
+    "arlocal": "^1.1.60",
+    "arweave": "^1.14.0",
+    "esbuild": "0.12.5",
+    "warp-contracts": "^1.4.14",
+    "warp-contracts-plugin-deploy": "^1.0.9"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
@@ -26,6 +37,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.2"
+    "@types/node": "^20.4.0",
+    "typescript": "^5.1.6"
   }
 }
