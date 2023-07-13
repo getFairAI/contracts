@@ -16,7 +16,10 @@ export const allow: writeFn = (state, action) => {
   // target checks
   ContractAssert(!!action.input.target, 'Missing "target" parameter in allow');
   const target = action.input.target as string;
-  ContractAssert(target !== SmartWeave.transaction.id, 'Cant setup claim to transfer a balance to itself');
+  ContractAssert(
+    target !== SmartWeave.transaction.id,
+    'Cant setup claim to transfer a balance to itself',
+  );
   ContractAssert(target.length === 43, 'Target is not valid');
 
   state.balances[action.caller] -= qty;
@@ -27,9 +30,8 @@ export const allow: writeFn = (state, action) => {
     from: action.caller,
     to: target,
     txID: SmartWeave.transaction.id,
-    qty
+    qty,
   });
 
   return { state };
 };
-

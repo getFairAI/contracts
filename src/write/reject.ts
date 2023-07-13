@@ -7,13 +7,12 @@ export const reject = (state: State, action: RejectAction) => {
   ContractAssert(!Number.isNaN(action.input.qty), 'Qty is not a number');
   ContractAssert(!!state.claimable, 'claimable is not defined');
 
-  const claim = state.claimable.find(c => c.txID === action.input.tx);
+  const claim = state.claimable.find((c) => c.txID === action.input.tx);
   ContractAssert(!!claim, 'claim not found');
 
   const existingClaim = claim as Claim;
   ContractAssert(existingClaim.to === action.caller, 'claim in not addressed to caller');
 
-  
   if (!state.balances[existingClaim.from]) {
     state.balances[existingClaim.from] = 0;
   }
@@ -22,7 +21,7 @@ export const reject = (state: State, action: RejectAction) => {
   state.balances[existingClaim.from] += existingClaim.qty;
 
   // remove claim
-  state.claimable = state.claimable.filter(c => c.txID !== existingClaim.txID);
+  state.claimable = state.claimable.filter((c) => c.txID !== existingClaim.txID);
 
   return { state };
 };

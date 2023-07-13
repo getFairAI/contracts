@@ -5,9 +5,7 @@ export const claim = (state: State, action: ClaimAction) => {
   ContractAssert(!!action.input.qty, 'qty is required');
 
   const qty = action.input.qty as number;
-  const idx = state.claimable.findIndex(
-    (c) => c.txID === action.input.txID
-  );
+  const idx = state.claimable.findIndex((c) => c.txID === action.input.txID);
 
   ContractAssert(idx >= 0, 'claimable not found');
   ContractAssert(state.claimable[idx].qty === qty, 'claimable qty is not equal to claim qty');

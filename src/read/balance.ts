@@ -1,4 +1,4 @@
-import { readFn } from "../interfaces/common";
+import { readFn } from '../interfaces/common';
 
 export const balance: readFn = (state, action) => {
   // if not target then get balance for caller
@@ -11,6 +11,6 @@ export const balance: readFn = (state, action) => {
     result: {
       target: action.input.target,
       balance: state.balances[action.input.target] || 0,
-    }
+    },
   };
 };

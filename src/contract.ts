@@ -8,23 +8,23 @@ import { reject } from './write/reject';
 import { Action, ClaimAction, ConstructorAction, RejectAction, State } from './interfaces/common';
 
 export async function handle(state: State, action: Action) {
-  validate(state)
+  validate(state);
   switch (action.input?.function) {
-    case "noop":
-      return { state }
-    case "__init":
+    case 'noop':
+      return { state };
+    case '__init':
       return constructor(state, action as ConstructorAction);
-    case "balance":
+    case 'balance':
       return balance(state, action);
-    case "transfer":
+    case 'transfer':
       return transfer(state, action);
-    case "allow":
+    case 'allow':
       return allow(state, action);
-    case "reject":
+    case 'reject':
       return reject(state, action as RejectAction);
-    case "claim":
+    case 'claim':
       return claim(state, action as ClaimAction);
     default:
-      throw new ContractError("Function not found")
+      throw new ContractError('Function not found');
   }
 }
