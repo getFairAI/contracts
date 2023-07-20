@@ -1,3 +1,3 @@
-# Fair Protocol Contracts
+# Atomic Assets Smart Contract
 
-Hosts Smart Contracts used with Fair Protocol
+Hosts the Atomit Assets Smart Contracts used in Fair Protocol marketplace.
