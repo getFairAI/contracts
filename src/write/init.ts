@@ -1,6 +1,6 @@
 import { ConstructorAction, State } from '../interfaces/common';
 
-export const constructor = (state: State, action: ConstructorAction) => {
+export const init = (state: State, action: ConstructorAction) => {
   ContractAssert(!!action.input.args, 'Missing "args" paramenter in constructor');
   ContractAssert(
     !!action.input.args.owner,

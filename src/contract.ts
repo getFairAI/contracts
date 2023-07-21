@@ -1,4 +1,4 @@
-import { constructor } from './write/constructor';
+import { init } from './write/init';
 import { balance } from './read/balance';
 import { allow } from './write/allow';
 import { claim } from './write/claim';
@@ -13,7 +13,7 @@ export async function handle(state: State, action: Action) {
     case 'noop':
       return { state };
     case '__init':
-      return constructor(state, action as ConstructorAction);
+      return init(state, action as ConstructorAction);
     case 'balance':
       return balance(state, action);
     case 'transfer':
