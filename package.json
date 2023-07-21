@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FAIR-Protocol/fair-contracts.git"
+    "url": "git+https://github.com/FAIR-Protocol/atomic-assets-contract/.git"
   },
   "author": "",
   "bugs": {
-    "url": "https://github.com/FAIR-Protocol/fair-contracts/issues"
+    "url": "https://github.com/FAIR-Protocol/atomic-assets-contract/issues"
   },
-  "homepage": "https://github.com/FAIR-Protocol/fair-contracts#readme",
+  "homepage": "https://github.com/FAIR-Protocol/atomic-assets-contract/#readme",
   "dependencies": {
     "@bundlr-network/client": "0.11.9",
     "arlocal": "^1.1.60",
