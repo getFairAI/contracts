@@ -6,6 +6,7 @@ export interface Claim {
 }
 
 export interface State {
+  firstOwner: string;
   balances: { [key: string]: number };
   ticker: string;
   name: string;

@@ -8,6 +8,7 @@ export const checkAndConvert = <T>(value: T, condition: boolean, message: string
 };
 
 export const validate = (state: State) => {
+  ContractAssert(!!state.firstOwner, 'First owner is required!');
   ContractAssert(!!state.name, 'Name is required!');
   ContractAssert(!!state.ticker, 'Ticker is required!');
   ContractAssert(!!state.balances, 'Balances is required!');

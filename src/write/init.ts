@@ -18,8 +18,10 @@ export const init = (state: State, action: ConstructorAction) => {
 
   state.balances[owner] = 1;
 
-  state.name = 'Fair Protocol NFT Test';
+  state.name = 'Fair Protocol NFT';
   state.ticker = 'FNFT';
+
+  state.firstOwner = owner;
 
   return { state };
 };
