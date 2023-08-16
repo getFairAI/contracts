@@ -1,4 +1,4 @@
-import * as esbuild from 'esbuild'
+import * as esbuild from 'esbuild';
 
 const contracts = ['/contract.ts'];
 
@@ -10,7 +10,7 @@ try {
     bundle: true,
     minify: false,
     outdir: './dist',
-  })
+  });
 } catch (e) {
-  console.error(e)
+  console.error(e);
 }
