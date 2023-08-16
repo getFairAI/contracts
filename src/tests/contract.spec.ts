@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2023 Fair Protocol
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 import fs from 'node:fs';
 import { describe, beforeAll, afterAll, it, expect } from '@jest/globals';
@@ -6,9 +22,13 @@ import { Contract, JWKInterface, LoggerFactory, WarpFactory } from 'warp-contrac
 import { State } from '../interfaces/common';
 import { beforeEach } from 'node:test';
 
+const port = 1984;
+const claimAmount = 0.1;
+const transferAmount = 0.5;
+
 describe('Fair Atomic Asset Contract test', () => {
-  const arlocal = new ArLocal(1984, false);
-  const warp = WarpFactory.forLocal(1984).use(new DeployPlugin());
+  const arlocal = new ArLocal(port, false);
+  const warp = WarpFactory.forLocal(port).use(new DeployPlugin());
   LoggerFactory.INST.logLevel('error');
 
   let contract: Contract<State>;
@@ -19,7 +39,6 @@ describe('Fair Atomic Asset Contract test', () => {
   beforeAll(async () => {
     // ~~ Declare all variables ~~
 
-    // ~~ Set up ArLocal ~~
     await arlocal.start();
     // ~~ Initialize 'LoggerFactory' ~~
 
@@ -80,11 +99,11 @@ describe('Fair Atomic Asset Contract test', () => {
     await contract.writeInteraction({
       function: 'transfer',
       target: newAddress,
-      qty: 0.5,
+      qty: transferAmount,
     });
     const state = (await contract.readState()).cachedValue.state;
-    expect(state.balances[walletAddress]).toEqual(0.5);
-    expect(state.balances[newAddress]).toEqual(0.5);
+    expect(state.balances[walletAddress]).toEqual(transferAmount);
+    expect(state.balances[newAddress]).toEqual(transferAmount);
   });
 
   it('should allow tokens to be claimed', async () => {
@@ -92,11 +111,11 @@ describe('Fair Atomic Asset Contract test', () => {
     const result = await contract.writeInteraction({
       function: 'allow',
       target: newAddress,
-      qty: 0.1,
+      qty: claimAmount,
     });
   
     const state = (await contract.readState()).cachedValue.state;
-    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === 0.1 && c.txID === result?.originalTxId);
+    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === claimAmount && c.txID === result?.originalTxId);
     expect(claim).toBeDefined();
   });
 
@@ -106,11 +125,11 @@ describe('Fair Atomic Asset Contract test', () => {
     const result = await contract.writeInteraction({
       function: 'allow',
       target: newAddress,
-      qty: 0.1,
+      qty: claimAmount,
     });
   
     const state = (await contract.readState()).cachedValue.state;
-    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === 0.1 && c.txID === result?.originalTxId);
+    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === claimAmount && c.txID === result?.originalTxId);
     
     contract.connect(jwk);
     await contract.writeInteraction({
@@ -132,11 +151,11 @@ describe('Fair Atomic Asset Contract test', () => {
     const result = await contract.writeInteraction({
       function: 'allow',
       target: newAddress,
-      qty: 0.1,
+      qty: claimAmount,
     });
   
     const state = (await contract.readState()).cachedValue.state;
-    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === 0.1 && c.txID === result?.originalTxId);
+    const claim = state.claimable.find((c) => c.to === newAddress && c.from === walletAddress && c.qty === claimAmount && c.txID === result?.originalTxId);
     
     await contract.writeInteraction({
       function: 'reject',
