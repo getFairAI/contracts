@@ -22,7 +22,7 @@ export interface Input {
 
 export interface ConstructorInput extends Input {
   args: {
-    owner: string;
+    firstOwner: string;
   };
 }
 
