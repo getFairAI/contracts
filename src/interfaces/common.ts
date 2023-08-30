@@ -20,12 +20,6 @@ export interface Input {
   qty?: number;
 }
 
-export interface ConstructorInput extends Input {
-  args: {
-    firstOwner: string;
-  };
-}
-
 export interface RejectInput extends Input {
   tx: string;
 }
@@ -38,11 +32,6 @@ export interface Action {
   input: Input;
   caller: string;
 }
-
-export interface ConstructorAction extends Action {
-  input: ConstructorInput;
-}
-
 export interface RejectAction extends Action {
   input: RejectInput;
 }
