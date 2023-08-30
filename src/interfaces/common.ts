@@ -11,7 +11,6 @@ export interface State {
   ticker: string;
   name: string;
   claimable: Claim[];
-  claims: string[]; // stores claimed txid
 }
 
 export interface Input {

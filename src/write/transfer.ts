@@ -1,4 +1,5 @@
 import { writeFn } from '../interfaces/common';
+import { checkNumber } from '../utils/validate';
 
 export const transfer: writeFn = (state, action) => {
   // caller checks
@@ -12,9 +13,7 @@ export const transfer: writeFn = (state, action) => {
   ContractAssert(target.length === 43, 'Target is not valid');
 
   // qty checks
-  ContractAssert(!!action.input.qty, 'Missing "qty" parameter in transfer');
-  ContractAssert(!Number.isNaN(action.input.qty), 'Qty is not a number');
-  const qty = action.input.qty as number;
+  const qty = checkNumber(action.input.qty);
 
   // state checks
   ContractAssert(!!state.balances[action.caller], 'Caller has no Balance');
