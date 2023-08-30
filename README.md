@@ -2,8 +2,8 @@
 
 Hosts the Atomit Assets Smart Contracts used in Fair Protocol marketplace.
 
-
 Latest Contract Source Deploy id:
-```
-_zrc9nFd07a3cVbcU6TitbwnmuS2QE88Z7gsf1va23E
+
+```js
+h9v17KHV4SXwdW2-JHU6a23f6R0YtbXZJJht8LfP8QM
 ```

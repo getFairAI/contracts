@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 import Bundlr from '@bundlr-network/client/build/cjs/cjsIndex';
 
-const warp = WarpFactory.forMainnet().use(new DeployPlugin());;
+const warp = WarpFactory.forMainnet().use(new DeployPlugin());
 
 const srcTxId = '2QTojDXm5rysfoV7ViJn3mj7yklX_5vA_viIOh6PlOw';
 
@@ -35,8 +35,8 @@ const deploy = async () => {
   ];
   const bundlr = new Bundlr('https://node2.bundlr.network', 'arweave', JWK);
 
-  const tx = await bundlr.upload("Fair Protocol NFT test", { tags: newTxTags });
-  const { contractTxId, srcTxId: sourceId } = await warp.register(tx.id, "node2") // use node2 for dispatch
+  const tx = await bundlr.upload('Fair Protocol NFT test', { tags: newTxTags });
+  const { contractTxId, srcTxId: sourceId } = await warp.register(tx.id, 'node2'); // use node2 for dispatch
 
   console.log(contractTxId);
   console.log(srcTxId);

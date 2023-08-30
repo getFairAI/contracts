@@ -1,10 +1,9 @@
-import { writeFn } from '../interfaces/common.js';
+import { writeFn } from '../interfaces/common';
+import { checkNumber } from '../utils/validate';
 
 export const allow: writeFn = (state, action) => {
   // qty checks
-  ContractAssert(!!action.input.qty, 'Missing "qty" parameter in allow');
-  const qty = action.input.qty as number;
-  ContractAssert(!Number.isNaN(qty), 'Qty is not a number');
+  const qty = checkNumber(action.input.qty);
 
   // caller checks
   ContractAssert(!!action.caller, 'Caller is required');

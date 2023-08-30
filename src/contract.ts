@@ -1,19 +1,14 @@
-import { init } from './write/init';
 import { balance } from './read/balance';
 import { allow } from './write/allow';
 import { claim } from './write/claim';
 import { transfer } from './write/transfer';
 import { validate } from './utils/validate';
 import { reject } from './write/reject';
-import { Action, ClaimAction, ConstructorAction, RejectAction, State } from './interfaces/common';
+import { Action, ClaimAction, RejectAction, State } from './interfaces/common';
 
 export async function handle(state: State, action: Action) {
   validate(state);
   switch (action.input?.function) {
-    case 'noop':
-      return { state };
-    case '__init':
-      return init(state, action as ConstructorAction);
     case 'balance':
       return balance(state, action);
     case 'transfer':

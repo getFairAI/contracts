@@ -2,10 +2,11 @@ import { Claim, RejectAction, State } from '../interfaces/common';
 
 export const reject = (state: State, action: RejectAction) => {
   ContractAssert(!!action.input.tx, 'tx is required');
-  ContractAssert(!!action.input.qty, 'qty is required');
   ContractAssert(action.input.tx.length === 43, 'tx is not valid');
-  ContractAssert(!Number.isNaN(action.input.qty), 'Qty is not a number');
-  ContractAssert(!!state.claimable, 'claimable is not defined');
+  
+  if (!state.claimable) {
+    state.claimable = [];
+  }
 
   const claim = state.claimable.find((c) => c.txID === action.input.tx);
   ContractAssert(!!claim, 'claim not found');

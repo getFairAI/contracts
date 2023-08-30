@@ -11,19 +11,12 @@ export interface State {
   ticker: string;
   name: string;
   claimable: Claim[];
-  claims: string[]; // stores claimed txid
 }
 
 export interface Input {
   function: string;
   target?: string;
   qty?: number;
-}
-
-export interface ConstructorInput extends Input {
-  args: {
-    owner: string;
-  };
 }
 
 export interface RejectInput extends Input {
@@ -38,11 +31,6 @@ export interface Action {
   input: Input;
   caller: string;
 }
-
-export interface ConstructorAction extends Action {
-  input: ConstructorInput;
-}
-
 export interface RejectAction extends Action {
   input: RejectInput;
 }

@@ -1,10 +1,14 @@
 import { ClaimAction, State } from '../interfaces/common.js';
+import { checkNumber } from '../utils/validate.js';
 
 export const claim = (state: State, action: ClaimAction) => {
   ContractAssert(!!action.input.txID, 'txID is required');
-  ContractAssert(!!action.input.qty, 'qty is required');
 
-  const qty = action.input.qty as number;
+  if (!state.claimable) {
+    state.claimable = [];
+  }
+
+  const qty = checkNumber(action.input.qty);
   const idx = state.claimable.findIndex((c) => c.txID === action.input.txID);
 
   ContractAssert(idx >= 0, 'claimable not found');
