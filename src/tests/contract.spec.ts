@@ -64,7 +64,6 @@ describe('Fair Atomic Asset Contract test', () => {
       name: 'Fair Protocol NFT Test',
       ticker: 'FNFT',
       claimable: [],
-      claims: [],
     };
     // ~~ Deploy contract ~~
     const { contractTxId } = await warp.deploy({
@@ -139,10 +138,8 @@ describe('Fair Atomic Asset Contract test', () => {
     });
 
     const newState = (await contract.readState()).cachedValue.state;
-    const claims = newState.claims;
     const claimables = newState.claimable;
     expect(claimables).not.toContainEqual(claim);
-    expect(claims).toContainEqual(claim?.txID);
   });
 
   it('should be able to reject claims', async () => {
@@ -165,9 +162,7 @@ describe('Fair Atomic Asset Contract test', () => {
     });
 
     const newState = (await contract.readState()).cachedValue.state;
-    const claims = newState.claims;
     const claimables = newState.claimable;
     expect(claimables).not.toContainEqual(claim);
-    expect(claims).not.toContainEqual(claim?.txID);
   });
 });
