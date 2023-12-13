@@ -1,7 +1,7 @@
 import { JWKInterface, WarpFactory } from 'warp-contracts';
 import fs from 'node:fs';
 import { DeployPlugin } from 'warp-contracts-plugin-deploy';
-import Bundlr from '@bundlr-network/client/build/cjs/cjsIndex';
+import Irys from '@irys/sdk';
 
 const warp = WarpFactory.forMainnet().use(new DeployPlugin());
 const srcTxId = process.argv[2];
@@ -37,7 +37,7 @@ const deploy = async () => {
     { name: 'Description', value: 'Description' },
     { name: 'Type', value: 'Text' },
   ];
-  const bundlr = new Bundlr('https://node2.bundlr.network', 'arweave', JWK);
+  const bundlr = new Irys({ url: 'https://node2.bundlr.network', token: 'arweave', key: JWK });
 
   const tx = await bundlr.upload('Fair Protocol NFT test', { tags: newTxTags });
   const { contractTxId, srcTxId: sourceId } = await warp.register(tx.id, 'node2'); // use node2 for dispatch
