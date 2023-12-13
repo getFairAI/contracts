@@ -4,8 +4,12 @@ import { DeployPlugin } from 'warp-contracts-plugin-deploy';
 import Bundlr from '@bundlr-network/client/build/cjs/cjsIndex';
 
 const warp = WarpFactory.forMainnet().use(new DeployPlugin());
+const srcTxId = process.argv[2];
 
-const srcTxId = '2QTojDXm5rysfoV7ViJn3mj7yklX_5vA_viIOh6PlOw';
+if (!srcTxId) {
+  console.error('Please provide source id: i.e:\n `npm run deploy:instance -- h9v17KHV4SXwdW2-JHU6a23f6R0YtbXZJJht8LfP8QM`');
+  process.exit(1);
+}
 
 const deploy = async () => {
   const JWK: JWKInterface = JSON.parse(fs.readFileSync('wallet-marketplace.json').toString());
