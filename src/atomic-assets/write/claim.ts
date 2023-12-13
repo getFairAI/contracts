@@ -1,5 +1,5 @@
-import { ClaimAction, State } from '../interfaces/common.js';
-import { checkNumber } from '../utils/validate.js';
+import { ClaimAction, State } from '../interfaces/common';
+import { checkNumber } from '../utils/validate';
 
 export const claim = (state: State, action: ClaimAction) => {
   ContractAssert(!!action.input.txID, 'txID is required');

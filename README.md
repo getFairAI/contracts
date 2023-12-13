@@ -1,9 +1,3 @@
-# Atomic Assets Smart Contract
+# Smart Contracts
 
-Hosts the Atomit Assets Smart Contracts used in Fair Protocol marketplace.
-
-Latest Contract Source Deploy id:
-
-```js
-h9v17KHV4SXwdW2-JHU6a23f6R0YtbXZJJht8LfP8QM
-```
+For Atomic Assets check [Atomic Assets README.md](./src/atomic-assets/README.md)

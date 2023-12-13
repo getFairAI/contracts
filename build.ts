@@ -1,6 +1,6 @@
 import * as esbuild from 'esbuild';
 
-const contracts = ['/contract.ts'];
+const contracts = ['/atomic-assets/contract.ts'];
 
 try {
   await esbuild.build({
@@ -9,7 +9,7 @@ try {
     }),
     bundle: true,
     minify: false,
-    outdir: './dist',
+    outfile: './dist/atomic-asset-contract.js',
   });
 } catch (e) {
   console.error(e);
